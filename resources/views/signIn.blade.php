@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    SignUp !
+    SignIn !
 @endsection
 @section('content')
     @include('includes.signinFrom')

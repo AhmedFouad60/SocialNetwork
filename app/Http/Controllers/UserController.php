@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+
 
 class UserController extends Controller
 {
@@ -42,6 +46,13 @@ class UserController extends Controller
     }
     //This will be handle in the signIn route part
     public function postSignIn(Request $request){
+
+        //if the auth is true redirect the user to Dashboard
+        if(Auth::attempt(['email'=>$request['email'],'password'=>$request['password']])){
+          return  redirect()->route('dash');
+
+        }
+        return redirect()->back();
 
     }
 
