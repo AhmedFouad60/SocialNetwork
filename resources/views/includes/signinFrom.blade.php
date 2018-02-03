@@ -7,6 +7,7 @@
     <div class="form-label-group {{ $errors->has('email') ? 'has-error' : '' }}">
         <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
         <label for="inputEmail">Email address</label>
+        {{ csrf_field() }}
     </div>
 
     <div class="form-label-group {{ $errors->has('password') ? 'has-error' : '' }}">
@@ -14,6 +15,7 @@
         <label for="inputPassword">Password</label>
     </div>
 
+
+
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-    {{csrf_field()}}
 </form>
