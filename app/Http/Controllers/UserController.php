@@ -26,6 +26,16 @@ class UserController extends Controller
          *    #store all info  in the DB
         */
 
+        //rules for validation   {this method can be done in any controller}
+        $this->validate($request,[
+            'email'=>'email|unique:users', //unique in the table of [users]
+            'password'=>'required|min:4',
+            'first_name'=>'required|max:120'
+        ]);
+
+
+
+
         $email=$request['email'];
         $password=bcrypt($request['password']);
         $first_name=$request['first_name'];
@@ -37,6 +47,7 @@ class UserController extends Controller
         $user->first_name=$first_name;
 
         $user->save();
+        Auth::login($user);
 
         return redirect()->route('signInPage');
 
@@ -46,6 +57,16 @@ class UserController extends Controller
     }
     //This will be handle in the signIn route part
     public function postSignIn(Request $request){
+
+
+        //validate the email and password
+        $this->validate($request,[
+            'email'=>'required',
+            'password'=>'required'
+        ]);
+
+
+
 
         //if the auth is true redirect the user to Dashboard
         if(Auth::attempt(['email'=>$request['email'],'password'=>$request['password']])){

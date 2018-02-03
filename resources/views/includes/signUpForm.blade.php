@@ -4,18 +4,18 @@
         <h1 class="h3 mb-3 font-weight-normal">Zag Social Network</h1>
     </div>
 
-    <div class="form-label-group">
-        <input type="text" id="inputName" name="first_name" class="form-control" placeholder="First name" required autofocus>
+    <div class="form-label-group {{ $errors->has('first_name') ? 'has-error' : '' }}">
+        <input type="text" id="inputName" name="first_name" value="{{ Request::old('first_name') }}" class="form-control" placeholder="First name" required autofocus>
         <label for="inputFirstname">First name</label>
     </div>
 
-    <div class="form-label-group">
-        <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required autofocus>
+    <div class="form-label-group {{ $errors->has('email') ? 'has-error' : '' }}">
+        <input type="email" id="inputEmail" name="email" value="{{ Request::old('email') }}" class="form-control" placeholder="Email address" required autofocus >
         <label for="inputEmail">Email address</label>
     </div>
 
-    <div class="form-label-group">
-        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+    <div class="form-label-group {{ $errors->has('password') ? 'has-error' : '' }}">
+        <input type="password" id="inputPassword" name="password" value="{{ Request::old('password') }}" class="form-control" placeholder="Password" required>
         <label for="inputPassword">Password</label>
     </div>
 
