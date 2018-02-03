@@ -20,7 +20,8 @@ Route::group(['middleware'=>['web']],function() {
 
     Route::get('/', function () {
         return view('welcome');
-    });
+    })->name('home');
+
     Route::get('/signInPage', [
         'uses' => 'UserController@getSignIn',
         'as' => 'signInPage'
@@ -42,7 +43,9 @@ Route::group(['middleware'=>['web']],function() {
 
     Route::get('/dashboard', [
         'uses' => 'PostController@getDashboard',
-        'as' => 'dash'
+        'as' => 'dash',
+        'middleware'=>'auth'
+
     ]);
 
 

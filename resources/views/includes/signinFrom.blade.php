@@ -9,7 +9,7 @@
         <label for="inputEmail">Email address</label>
     </div>
 
-    <div class="form-label-group {{ $errors->has('password') ? 'has-error' : '' }}"">
+    <div class="form-label-group {{ $errors->has('password') ? 'has-error' : '' }}">
         <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
         <label for="inputPassword">Password</label>
     </div>
