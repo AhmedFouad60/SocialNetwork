@@ -67,6 +67,12 @@ Route::group(['middleware'=>['web']],function() {
         'as'    =>'logout'
     ]);
 
+    Route::post('/edit', [
+        'uses' => 'PostController@postEditPost',
+        'as' => 'edit'
+    ]);
+
+
 
 
 

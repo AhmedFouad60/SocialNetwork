@@ -2,6 +2,8 @@
 $(function () {
     'use strict'
 
+    var postId=0;
+    var postBodyElement=null;
     $('[data-toggle="offcanvas"]').on('click', function () {
         $('.offcanvas-collapse').toggleClass('open')
     });
@@ -9,8 +11,9 @@ $(function () {
     $('.post').find('.interaction').find('.edit').on('click',function (event) {
         event.preventDefault();
         console.log('It works');
-
-        var postbody=event.target.parentNode.parentNode.childNodes[1].textContent;
+        postBodyElement =event.target.parentNode.parentNode.childNodes[1];
+        var postbody=postBodyElement.textContent;
+        postId=event.target.parentNode.parentNode.dataset['postid'];
         console.log(postbody);
 
 
@@ -19,6 +22,22 @@ $(function () {
         $('#edit-modal').modal();//trigger the modal
         $('#post-body').val(postbody);
     });
+
+    $('#modal-save').on('click',function () {
+        console.log('save');
+
+        $.ajax({
+            method:'POST',
+            url:url,
+            data:{body:$('#post-body').val(),postId:postId,_token:token}
+        })
+        .done(function (msg) {
+            $(postBodyElement).text(msg['new_body']);
+            $('#edit-modal').modal('hide');
+        });
+
+    });
+
 
 
 
