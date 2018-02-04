@@ -40,7 +40,26 @@ class PostController extends Controller
     }
 
 
+    public function getdeletePost($post_id){
+        //fetch the post with the specified id and delete it
 
+        $post=Post::where('id',$post_id)->first();
+
+        $message='can not delete the post there is an error';
+        $key='alert-danger';
+        if($post !=null){
+            $post->delete();
+            $message='deleted successfully';
+            $key='alert-danger';
+        }
+
+
+
+
+
+        return redirect()->route('dash')->with(['message'=>$message,'key'=>$key]);
+
+    }
 
 
 

@@ -53,6 +53,10 @@ Route::group(['middleware'=>['web']],function() {
         'uses'=>'PostController@postCreatePost',
         'as'=>'post.create'
     ]);
+    Route::get('/deletepost/{post_id}',[
+        'uses'=>'PostController@getdeletePost',
+        'as'=>'post.delete'
+    ]);
 
 
 
