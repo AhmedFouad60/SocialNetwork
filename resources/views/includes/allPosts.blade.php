@@ -12,11 +12,11 @@
                 <div class="interaction">
                     <a href="#" class="like">like</a> |
                     <a href="#" class="like">Dislike</a>
-
+                    @if(Auth::user()==$post->user)
                         |
                         <a href="#" class="edit">Edit</a> |
                         <a href="{{route('post.delete',['post_id'=>$post->id])}}">Delete</a>
-
+                    @endif
                 </div>
             </article>
              @endforeach

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class PostController extends Controller
 {
@@ -48,6 +50,8 @@ class PostController extends Controller
         $message='can not delete the post there is an error';
         $key='alert-danger';
         if($post !=null){
+            if(Auth::user()!=$post->user){return redirect()->back();} //check if the user deleting post is the already own of the post or not
+
             $post->delete();
             $message='deleted successfully';
             $key='alert-success';
