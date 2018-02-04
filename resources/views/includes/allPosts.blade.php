@@ -15,7 +15,7 @@
 
                         |
                         <a href="#" class="edit">Edit</a> |
-                        <a href="{{route('post.delete',['post_id',$post->id])}}">Delete</a>
+                        <a href="{{route('post.delete',['post_id'=>$post->id])}}">Delete</a>
 
                 </div>
             </article>

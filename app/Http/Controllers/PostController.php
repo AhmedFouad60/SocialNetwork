@@ -11,7 +11,7 @@ class PostController extends Controller
     public function getDashboard(){
 
         //fetch all the posts from the DB then render them in the dashboard
-        $posts=Post::all();
+        $posts=Post::orderBy('created_at','desc')->get();
 
         return view('dashboard',['posts'=>$posts]);
     }
@@ -50,16 +50,12 @@ class PostController extends Controller
         if($post !=null){
             $post->delete();
             $message='deleted successfully';
-            $key='alert-danger';
+            $key='alert-success';
         }
-
-
-
-
-
         return redirect()->route('dash')->with(['message'=>$message,'key'=>$key]);
 
     }
+
 
 
 

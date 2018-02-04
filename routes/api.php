@@ -51,15 +51,21 @@ Route::group(['middleware'=>['web']],function() {
 
     Route::post('/createpost',[
         'uses'=>'PostController@postCreatePost',
-        'as'=>'post.create'
+        'as'=>'post.create',
+        'middleware'=>'auth'
+
     ]);
-    Route::get('/deletepost/{post_id}',[
+    Route::get('/delete-post/{post_id}',[
         'uses'=>'PostController@getdeletePost',
-        'as'=>'post.delete'
+        'as'=>'post.delete',
+        'middleware'=>'auth'
     ]);
 
 
-
+    Route::get('/logout',[
+        'uses'  =>'UserController@getlogout',
+        'as'    =>'logout'
+    ]);
 
 
 
