@@ -9,7 +9,11 @@ class PostController extends Controller
 {
     //
     public function getDashboard(){
-        return view('dashboard');
+
+        //fetch all the posts from the DB then render them in the dashboard
+        $posts=Post::all();
+
+        return view('dashboard',['posts'=>$posts]);
     }
 
 
