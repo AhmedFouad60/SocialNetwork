@@ -7,6 +7,7 @@
     @include('includes.message-block')
     @include('includes.newPostForm')
     @include('includes.allPosts')
+    @include('includes.modal')
 
 
 @endsection
