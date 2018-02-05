@@ -10,9 +10,10 @@
 @section('content')
     @include('includes.header')
     @include('includes.profile')
+    @include('layouts.profileEditModal')
+
     @include('includes.newPostForm')
     @include('includes.allPosts')
     @include('layouts.postModal')
-
 
 @endsection

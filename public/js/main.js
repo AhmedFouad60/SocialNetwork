@@ -38,6 +38,11 @@ $(function () {
 
     });
 
+/*for profile Edit image and first name*/
+$('#profile-pic').on('click',function () {
+   console.log("edit button works");
+   $('#profile-modal').modal();
+});
 
 
 

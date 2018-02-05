@@ -1,4 +1,7 @@
 @extends('includes.modal')
+@section('modal-id')
+    edit-modal
+@endsection
 @section('modal-header')
     Edit post
 @endsection
