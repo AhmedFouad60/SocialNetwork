@@ -82,6 +82,20 @@ class UserController extends Controller
         return redirect()->route('home');
     }
 
+    /** TO DO at midnight*/
+
+
+    //profile part
+    public function getProfile($user_id){
+
+        //fetch all the posts from the DB then render them in the dashboard
+        $posts=User::find($user_id)->posts;
+
+        return view('profile',['posts'=>$posts]);
+    }
+
+
+
 
 
 }

@@ -8,6 +8,7 @@
     <title>@yield('title')</title>
     <link rel="stylesheet" href="{{URL::to('css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{URL::to('css/main.css')}}">
+    @yield('css')
 
 
 </head>

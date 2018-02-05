@@ -71,7 +71,16 @@ Route::group(['middleware'=>['web']],function() {
         'uses' => 'PostController@postEditPost',
         'as' => 'edit'
     ]);
+    Route::get('/profile',function (){
+        return view('profile');
+    });
 
+    Route::get('/profile/{user_id}', [
+        'uses' => 'UserController@getProfile',
+        'as' => 'profile',
+
+
+    ]);
 
 
 
