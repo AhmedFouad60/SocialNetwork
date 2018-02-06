@@ -7,8 +7,8 @@
 @endsection
 @section('modal-body')
     <section class="row new-post">
-        <div class="col-md-6 col-md-offset-3">
-            <form  enctype="multipart/form-data">
+        <div class="col-md-6 col-md-offset-3" >
+            <form  enctype="multipart/form-data" method="post" id="profile-from">
                 <div class="form-group">
                     <label for="first_name">First Name</label>
                     <input type="text" name="first_name" class="form-control" value="{{$user->first_name}}" id="first_name">

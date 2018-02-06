@@ -108,13 +108,22 @@ class UserController extends Controller
         $old_user_name=$user->first_name;
         $file=$request->file('image');
         $filename=$request['first_name'].'-'.$user->id.'.jpg';
-        $old_file_name=$old_user_name.'-'.$user->id.'jpg';
+        $old_filename=$old_user_name.'-'.$user->id.'jpg';
+        $update = false;
+        if (Storage::disk('local')->has($old_filename)) {
+            $old_file = Storage::disk('local')->get($old_filename);
+            Storage::disk('local')->put($filename, $old_file);
+            $update = true;
+        }
         //check if there was a file retrived from the request  ..if that is true -> store it
         if($file){
             storage::disk('local')->put($filename,File::get($file));
 
         }
-        return redirect()->route('profile');
+        if ($update && $old_filename !== $filename) {
+            Storage::delete($old_filename);
+        }
+        return redirect()->route('profile',['user_id'=>$user->id]);
 
 
 

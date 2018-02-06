@@ -46,15 +46,62 @@ $('#profile-pic').on('click',function () {
 
 $('#profile-save').on('click',function () {
 
+
+    //stop submit the form, we will post it manually.
+    event.preventDefault();
+
+    // Get form
+    var form = $('#profile-from')[0];
+
+    // Create an FormData object
+    var data = new FormData(form);
+
+    // If you want to add an extra field for the FormData
+    data.append("_token", token);
+
+    // disabled the submit button
+    $("#profile-save").prop("disabled", true);
+
     $.ajax({
-        method:'POST',
-        url:profileUrl,
-        data:{_token:token}
-    })
-        .done(function () {
-            $('#profile-modal').modal('hide');
-        });
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: profileUrl,
+        data: data,
+        processData: false,
+        contentType: false,
+        cache: false,
+        timeout: 600000,
+        success: function (data) {
+
+            console.log("SUCCESS : ", data);
+            $("#profile-save").prop("disabled", false);
+            $('#profile-modal').modal('toggle');
+            //Refresh the source image
+            $('#user-image').attr("src",$('#user-image').attr('src')+'?'+Math.random());
+
+
+        },
+        error: function (e) {
+
+            console.log("ERROR : ", e);
+            $("#btnSubmit").prop("disabled", false);
+
+        }
+    });
+
 });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
