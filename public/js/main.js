@@ -1,12 +1,19 @@
-//navBar part
 $(function () {
     'use strict'
 
     var postId=0;
     var postBodyElement=null;
+    var form;
+    var data;
+    /*************************************Start navBar part**************************/
+
     $('[data-toggle="offcanvas"]').on('click', function () {
         $('.offcanvas-collapse').toggleClass('open')
     });
+    /*************************************End navBar part**************************/
+
+    /************************************Start EditPost part**************************/
+
 
     $('.post').find('.interaction').find('.edit').on('click',function (event) {
         event.preventDefault();
@@ -15,14 +22,12 @@ $(function () {
         var postbody=postBodyElement.textContent;
         postId=event.target.parentNode.parentNode.dataset['postid'];
         console.log(postbody);
-
-
-
-
         $('#edit-modal').modal();//trigger the modal
         $('#post-body').val(postbody);
     });
 
+
+        //hit the save changes in the modal to request editing the post
     $('#modal-save').on('click',function () {
         console.log('save');
 
@@ -37,13 +42,20 @@ $(function () {
         });
 
     });
+    /************************************End EditPost part**************************/
 
-/*for profile Edit image and first name*/
+
+
+    /************************************ Start profile part**************************/
+
+
+    /*trigger the edit button in the profile page*/
 $('#profile-pic').on('click',function () {
    console.log("edit button works");
    $('#profile-modal').modal();
 });
 
+//when hitting save it will save {image,and first_name} editing of the user
 $('#profile-save').on('click',function () {
 
 
@@ -51,10 +63,10 @@ $('#profile-save').on('click',function () {
     event.preventDefault();
 
     // Get form
-    var form = $('#profile-from')[0];
+    form = $('#profile-from')[0];
 
     // Create an FormData object
-    var data = new FormData(form);
+     data = new FormData(form);
 
     // If you want to add an extra field for the FormData
     data.append("_token", token);
@@ -90,23 +102,6 @@ $('#profile-save').on('click',function () {
     });
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    /************************************ End profile part**************************/
 
 });
-
