@@ -81,6 +81,15 @@ Route::group(['middleware'=>['web']],function() {
 
 
     ]);
+    Route::post('/profile-save',[
+        'uses'=>'UserController@postSaveProfile',
+        'as'  =>'profile.save'
+    ]);
+
+    Route::get('/userimage/{filename}',[
+        'uses'=>'UserController@getUserImage',
+        'as'=>'profile.image'
+    ]);
 
 
 

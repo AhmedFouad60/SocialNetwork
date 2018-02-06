@@ -44,7 +44,17 @@ $('#profile-pic').on('click',function () {
    $('#profile-modal').modal();
 });
 
+$('#profile-save').on('click',function () {
 
+    $.ajax({
+        method:'POST',
+        url:profileUrl,
+        data:{_token:token}
+    })
+        .done(function () {
+            $('#profile-modal').modal('hide');
+        });
+});
 
 
 

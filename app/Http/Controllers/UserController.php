@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -91,9 +92,43 @@ class UserController extends Controller
         //fetch all the posts from the DB then render them in the dashboard
         $posts=User::find($user_id)->posts;
 
-        return view('profile',['posts'=>$posts]);
+        return view('profile',['posts'=>$posts,'user'=>Auth::user()]);
+    }
+    public function postSaveProfile(Request $request){
+
+        $this->validate($request,[
+            'first_name'=>'required|max:120'
+        ]);
+
+        //update the user first name
+        $user=Auth::user();
+        $user->first_name=$request['first_name'];
+        $user->update();
+        //update the file only if the file exists
+        $old_user_name=$user->first_name;
+        $file=$request->file('image');
+        $filename=$request['first_name'].'-'.$user->id.'.jpg';
+        $old_file_name=$old_user_name.'-'.$user->id.'jpg';
+        //check if there was a file retrived from the request  ..if that is true -> store it
+        if($file){
+            storage::disk('local')->put($filename,File::get($file));
+
+        }
+        return redirect()->route('profile');
+
+
+
+
+
+
+
     }
 
+    //retrive the profile pic
+    public function getUserImage($filename){
+        $file=Storage::disk('local')->get($filename);
+        return new Response($file,200);
+    }
 
 
 
