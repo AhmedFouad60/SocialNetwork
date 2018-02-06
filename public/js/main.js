@@ -110,7 +110,7 @@ $('#profile-save').on('click',function () {
     $('.submit-post').on('click',function () {
         console.log("works");
         currentBodySize= $('.article-size').height();
-        $('body').css('padding-top',$('body').css('padding-top')+currentBodySize );
+        $('body').css('padding-top',$('body').css('padding-top')+ currentBodySize );
     });
 
 
