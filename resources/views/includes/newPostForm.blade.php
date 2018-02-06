@@ -7,7 +7,7 @@
                 <textarea class="form-control" name="body" id="new-post" rows="5" placeholder="Your Post"></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary">Create Post</button>
+            <button type="submit" class="btn btn-primary submit-post">Create Post</button>
 
         </form>
 

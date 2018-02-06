@@ -5,6 +5,7 @@ $(function () {
     var postBodyElement=null;
     var form;
     var data;
+    var currentBodySize;
     /*************************************Start navBar part**************************/
 
     $('[data-toggle="offcanvas"]').on('click', function () {
@@ -103,5 +104,23 @@ $('#profile-save').on('click',function () {
 
 });
     /************************************ End profile part**************************/
+
+
+
+    $('.submit-post').on('click',function () {
+        console.log("works");
+        currentBodySize= $('.article-size').height();
+        $('body').css('padding-top',$('body').css('padding-top')+currentBodySize );
+    });
+
+
+
+
+
+
+
+
+
+
 
 });
