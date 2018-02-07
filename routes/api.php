@@ -90,7 +90,7 @@ Route::group(['middleware'=>['web']],function() {
         'uses'=>'UserController@getUserImage',
         'as'=>'profile.image'
     ]);
-    Route::post('like-post',[
+    Route::post('/like-post',[
         'uses'=>'PostController@postLikePost',
         'as'=>'post.like'
     ]);
