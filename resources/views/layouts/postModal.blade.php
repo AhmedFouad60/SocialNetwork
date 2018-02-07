@@ -20,5 +20,6 @@
     <script>
         var token='{{Session::token()}}';
         var url='{{route('edit')}}';
+        var likeUrl='{{route('post.like')}}';
     </script>
 @endsection

@@ -31,5 +31,6 @@
     <script>
         var token='{{Session::token()}}';
         var profileUrl='{{route('profile.save')}}';
+
     </script>
 @endsection

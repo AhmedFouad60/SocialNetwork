@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\User;
+use App\Like;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -70,7 +71,43 @@ class PostController extends Controller
     }
 
 
+    public function postLikePost(Request $request){
+        //retrive the parameters from the route
+        $postId=$request['postId'];
+        $isLike=$request['isLike'];
+        $update=false;
+        //Get the user of the post and the already post ..why {need it if i want to make new row in DB}
+        $post=Post::find($postId);
+        if(!$post){
+            return null;
+        }
+        $user=Auth::user();
+        $like=$user->likes()->where('post_id',$postId)->first();
+        if($like){
+            //this mean the user liked or disliked this post
+            $alreadyLike=$like->like;
+            $update=true;
+            if($alreadyLike==$isLike){ //this mean if i toggle the like button of already liked post it will delete the row
+                $like->delete();
+                return null;
+            }
 
+        }else{
+            $like=new Like();
+        }
+        $like->like=$isLike;
+        $like->user_id=$user->id;
+        $like->post_id=$post->id;
+        if($update){
+            $like->update();
+        }else{
+            $like->save();
+        }
+        return null;
+
+
+
+    }
 
 
 

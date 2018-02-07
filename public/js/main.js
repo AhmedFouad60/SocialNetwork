@@ -115,6 +115,37 @@ $('#profile-save').on('click',function () {
 
 
 
+    /************************************ Start Like/dislike  part**************************/
+
+    $('.like').on('click',function (event) {
+        event.preventDefault();
+       var isLike= event.target.previousElementSibling==null?true:false;
+        postId=event.target.parentNode.parentNode.dataset['postid'];
+
+
+        $.ajax({
+           method:'POST',
+           url:likeUrl,
+           data:{isLike:isLike,postId:postId,_token:token}
+       }).done(function () {
+            //change the page
+        });
+
+
+       console.log(isLike);
+    });
+
+
+
+
+
+
+
+
+
+
+    /************************************ End Like/dislike  part**************************/
+
 
 
 
